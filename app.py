@@ -117,6 +117,6 @@ def seed():
             db.session.commit()
             print("Global Brand Database Initialized Successfully.")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     seed()
     app.run(debug=True)
