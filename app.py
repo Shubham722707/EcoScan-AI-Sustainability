@@ -119,8 +119,9 @@ def seed():
 
 
     # --- FINAL FIX FOR DEPLOYMENT ---
+# This section ensures the database and initial data are ready on the server
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # This creates the missing tables on Render
-        seed()           # This adds your 'Suryam' user and brands
+        db.create_all()  # Physically creates the .db file and tables
+        seed()           # Fills the tables with your brands and user
     app.run()
