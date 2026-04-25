@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Login | EcoAdvisor AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        body { 
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+            font-family: 'Space Grotesk', sans-serif;
+            color: #f1f5f9;
+        }
+        .login-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        }
+        .neon-input {
+            background: rgba(2, 6, 23, 0.8);
+            border: 1px solid #1e293b;
+            transition: all 0.3s ease;
+        }
+        .neon-input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+        .glow-button {
+            background: #10b981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            transition: all 0.4s ease;
+        }
+        .glow-button:hover {
+            background: #34d399;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+
+    <div class="max-w-md w-full animate__animated animate__zoomIn">
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl border-2 border-emerald-500 mb-4 rotate-45 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                <i class="fas fa-leaf text-emerald-500 -rotate-45 text-2xl"></i>
+            </div>
+            <h1 class="text-2xl font-black tracking-[0.4em] uppercase text-emerald-500">EcoAdvisor</h1>
+            <p class="text-[10px] text-slate-500 font-bold tracking-widest mt-2">SECURE ACCESS PROTOCOL</p>
+        </div>
+
+        <div class="login-card p-10 rounded-[2.5rem] relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-emerald-500/20 animate-pulse"></div>
+
+            <h2 class="text-xl font-bold mb-8 text-center tracking-tight">IDENTITY VERIFICATION</h2>
+
+            <form method="POST" class="space-y-6">
+                <div class="relative">
+                    <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 text-sm"></i>
+                    <input type="text" name="username" placeholder="USERNAME" 
+                           class="neon-input w-full pl-12 pr-4 py-4 rounded-xl outline-none text-emerald-400 font-bold tracking-widest text-xs" required>
+                </div>
+
+                <div class="relative">
+                    <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 text-sm"></i>
+                    <input type="password" name="password" placeholder="PASSWORD" 
+                           class="neon-input w-full pl-12 pr-4 py-4 rounded-xl outline-none text-emerald-400 font-bold tracking-widest text-xs" required>
+                </div>
+
+                <button type="submit" class="glow-button w-full py-4 rounded-xl text-slate-900 font-black tracking-[0.2em] text-xs uppercase active:scale-95">
+                    Authorize Access
+                </button>
+            </form>
+
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center">
+                <p class="text-[9px] text-slate-500 font-bold tracking-widest uppercase mb-2">Internal Testing Credentials</p>
+                <div class="inline-flex gap-4 text-emerald-500/50 text-[10px] font-mono">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center text-[8px] text-slate-600 font-bold tracking-[0.3em] uppercase">
+            System Operational // Encryption Level: AES-256
+        </div>
+    </div>
+
+</body>
+</html>

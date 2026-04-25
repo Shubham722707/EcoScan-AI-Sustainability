@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoAdvisor AI | Dark Mode Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+        .bento-card { background: #1e293b; border: 1px solid #334155; transition: all 0.4s ease; }
+        .bento-card:hover { border-color: #10b981; transform: translateY(-5px); }
+        .progress-fill { transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1); }
+        .text-glow { text-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+    <nav class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <i class="fas fa-bolt text-emerald-400 group-hover:scale-125 transition-transform"></i>
+                <span class="font-black text-xl tracking-widest uppercase">Eco<span class="text-emerald-400">Scan</span></span>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <p class="text-[10px] text-slate-500 font-bold tracking-tighter">AUTHENTICATED</p>
+                    <p class="font-bold text-sm text-emerald-400">{{ name }}</p>
+                </div>
+                <a href="/logout" class="bg-slate-800 hover:bg-red-500/20 hover:text-red-400 text-slate-300 p-2.5 rounded-xl border border-slate-700 transition-all">
+                    <i class="fas fa-power-off"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-6 md:p-16">
+        <div class="text-center mb-16 animate__animated animate__fadeIn">
+            <span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-black px-4 py-1.5 rounded-full border border-emerald-500/20 mb-6 inline-block tracking-widest uppercase">
+                Next-Gen Sustainability Engine
+            </span>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight text-glow">
+                Ethics meets <br><span class="text-emerald-400 italic">Intelligence.</span>
+            </h1>
+        </div>
+
+        <div class="max-w-3xl mx-auto mb-20">
+            <div class="bg-slate-800/80 p-2 rounded-[2.5rem] border border-slate-700 shadow-2xl flex items-center focus-within:border-emerald-500/50 transition-all">
+                <input id="brandInput" type="text" placeholder="Enter a global brand..." 
+                       class="w-full bg-transparent p-5 outline-none text-xl font-medium placeholder:text-slate-600">
+                <button onclick="performSearch()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-10 py-5 rounded-[2rem] font-black transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] active:scale-95">
+                    SCAN
+                </button>
+            </div>
+        </div>
+
+        <div id="resultBox" class="hidden animate__animated animate__zoomIn">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                
+                <div class="md:col-span-8 bento-card rounded-[3rem] p-10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-10">
+                            <div>
+                                <h2 id="resName" class="text-6xl font-black tracking-tighter mb-2">Zara</h2>
+                                <p id="resStatus" class="text-orange-400 font-bold text-sm tracking-widest uppercase"></p>
+                            </div>
+                            <div class="bg-slate-900/50 border border-slate-700 p-4 rounded-3xl text-center min-w-[100px]">
+                                <span class="block text-[10px] text-slate-500 font-bold mb-1">GLOBAL SCORE</span>
+                                <span id="resRating" class="text-3xl font-black text-emerald-400">2/5</span>
+                            </div>
+                        </div>
+                        <p id="resDetails" class="text-slate-400 text-lg leading-relaxed mb-8"></p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-xs font-bold text-slate-500">
+                            <span>ECO-TRANSPARENCY PROGRESS</span>
+                            <span id="scorePercent">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-4 rounded-full overflow-hidden border border-slate-800">
+                            <div id="resBar" class="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 bento-card rounded-[3rem] p-8 flex flex-col bg-emerald-500 text-slate-900">
+                    <div class="bg-slate-900 text-emerald-400 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 shadow-xl">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="font-black text-2xl mb-4 leading-tight">AI Recommendation Engine</h3>
+                    <p id="resAI" class="font-bold text-sm leading-relaxed mb-6 italic opacity-90"></p>
+                    <div class="mt-auto border-t border-slate-900/10 pt-4">
+                        <p class="text-[10px] font-black uppercase tracking-widest">Decision Confidence: 98%</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 bento-card rounded-[3rem] p-8 text-center">
+                    <i class="fas fa-tint text-emerald-400 text-2xl mb-4"></i>
+                    <h4 class="font-black text-xs text-slate-500 uppercase mb-2">Water Stewardship</h4>
+                    <p class="text-sm font-bold">Analysis of chemical dyeing & pollution.</p>
+                </div>
+                <div class="md:col-span-4 bento-card rounded-[3rem] p-8 text-center border-emerald-500/30">
+                    <i class="fas fa-users text-emerald-400 text-2xl mb-4"></i>
+                    <h4 class="font-black text-xs text-slate-500 uppercase mb-2">Labor Fairness</h4>
+                    <p class="text-sm font-bold">Supply chain wage & safety review.</p>
+                </div>
+                <div class="md:col-span-4 bento-card rounded-[3rem] p-8 text-center">
+                    <i class="fas fa-paw text-emerald-400 text-2xl mb-4"></i>
+                    <h4 class="font-black text-xs text-slate-500 uppercase mb-2">Animal Welfare</h4>
+                    <p class="text-sm font-bold">Verification of cruelty-free materials.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function performSearch() {
+            const input = document.getElementById('brandInput');
+            const val = input.value.trim();
+            if(!val) return;
+
+            const res = await fetch('/api/search', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ brand: val })
+            });
+            const data = await res.json();
+
+            if(data.found) {
+                document.getElementById('resultBox').classList.remove('hidden');
+                document.getElementById('resName').innerText = data.name;
+                document.getElementById('resRating').innerText = data.rating + "/5";
+                document.getElementById('resStatus').innerText = data.status;
+                document.getElementById('resDetails').innerText = data.details;
+                document.getElementById('resAI').innerText = data.ai_tip;
+                
+                const bar = document.getElementById('resBar');
+                const percent = (data.rating / 5 * 100);
+                setTimeout(() => {
+                    bar.style.width = percent + '%';
+                    document.getElementById('scorePercent').innerText = percent + '%';
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>
