@@ -117,6 +117,10 @@ def seed():
             db.session.commit()
             print("Global Brand Database Initialized Successfully.")
 
-if __name__ == "__main__":
-    seed()
-    app.run(debug=True)
+
+    # --- FINAL FIX FOR DEPLOYMENT ---
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # This creates the missing tables on Render
+        seed()           # This adds your 'Suryam' user and brands
+    app.run()
